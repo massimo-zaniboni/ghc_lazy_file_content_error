@@ -1,0 +1,27 @@
+name: bracket
+version: 0.0.1
+cabal-version: >=1.2
+build-type: Simple
+license: ISC
+maintainer: massimo.zaniboni@docmelody.com
+author: Massimo Zaniboni
+data-dir: ""
+copyright: Massimo Zaniboni <massimo.zaniboni@docmelody.com>
+
+executable bracket
+  ghc-options:  -threaded -O -rtsopts  "-with-rtsopts=-N " 
+  build-depends: 
+             base -any
+           , system-filepath -any
+           , transformers -any 
+           , bytestring -any
+           , containers -any
+           , data-default -any
+           , mtl -any
+           , text -any
+           , exceptions -any
+           , attoparsec -any
+
+  main-is: Main.hs
+  buildable: True
+  hs-source-dirs: .
