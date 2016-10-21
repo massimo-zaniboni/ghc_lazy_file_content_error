@@ -15,16 +15,6 @@ can be called after the handle is closed.
 This code tests the bad behaviour between brackets functions,
 and lazy evaluation.
 
-A good behaviour should be:
-the type signature prevents non strict evaluations to escape
-the bracket action.
-
-Another good behaviour should be:
-`bracket` type signature creates a strict action that
-when invoked acquires the resources, calculate the result,
-and release the resources. So it has a strict behaviour
-documented from the type system.
-
 A bad behaviour is:
 a file exception is raised at run-time,
 when the lazy thunk is executed on a closed handle.
@@ -33,6 +23,8 @@ A very bad behaviour is:
 no file exception is raised at run-time,
 and the lazy thunk receives an empty file content,
 also if the file has some content.
+
+Many test cases have a very bad behaviour.
 
 ## Work Arounds
 
@@ -44,6 +36,18 @@ because there are no problems of resource leaks.
 Another workaround is forcing a strict evaluation of the code inside the
 `bracket` resource management, in order that no lazy thunk escape the
 bracket.
+
+## Definitive Solutions
+
+A good behaviour should be:
+the type signature prevents non strict evaluations to escape
+the bracket action.
+
+Another good behaviour should be:
+`bracket` type signature creates a strict action that
+when invoked acquires the resources, calculate the result,
+and release the resources. So it has a strict behaviour
+documented from the type system.
 
 ## Source Code
 
