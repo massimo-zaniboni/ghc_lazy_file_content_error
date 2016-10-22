@@ -65,6 +65,7 @@ testAll = do
            ,("no bracket, lazy text, lazy eval, hClose", test_nobracket_lazy_lazy_close)
            ,("no bracket, lazy text, strict eval, hClose", test_nobracket_lazy_strict_close)
            ,("withFile, lazy text, lazy eval", test_withFile_lazy_lazy)
+           ,("readFile, lazy text, lazy eval", test_readFile_lazyText_lazy)
            ,("withFile, lazy string, lazy eval", test_withFile_lazyString_lazy)
            ]
 
@@ -148,6 +149,10 @@ test_withFile_lazy_lazy = do
 test_withFile_lazyString_lazy = do
     IO.withFile fileName ReadMode $ \handle -> do
       IO.hGetContents handle
+
+test_readFile_lazyText_lazy = do
+    fileContent <- LazyText.readFile fileName
+    return $ LazyText.unpack fileContent
 
 -- -------------------------------------------
 -- Stress Files
